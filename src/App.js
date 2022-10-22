@@ -159,8 +159,6 @@ const App = () => {
     return templatesIds;
   };
 
-  const getTemplate = () => {};
-
   const getDocumentsIds = () => {
     const documentsIds = [];
 
