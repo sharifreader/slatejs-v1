@@ -428,6 +428,7 @@ const App = () => {
   );
 };
 
+// Add Bold to this and Toolbar
 const Leaf = (props) => {
   return (
     <span
