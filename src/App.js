@@ -16,6 +16,7 @@ import { withHistory } from "slate-history";
 
 import { htmlEscape } from "escape-goat";
 import parse from "html-react-parser";
+import { Toolbar } from "./Toolbar";
 
 // import { initialValue } from "./InitialValue";
 
@@ -314,7 +315,6 @@ const App = () => {
                 key={templateId}
                 onClick={() => {
                   templateIdRef.current = templateId;
-                  getTemplate();
                   const template = localStorage.getItem(templateIdRef.current);
 
                   if (template) {
@@ -388,7 +388,7 @@ const App = () => {
           </div>
         ))}
       </div>
-
+      <Toolbar />
       <div className="container">
         <Editable
           className="editorArea"
@@ -429,23 +429,39 @@ const App = () => {
 };
 
 // Add Bold to this and Toolbar
-const Leaf = (props) => {
+const Leaf = ({ attributes, leaf, children }) => {
+  if (leaf.bold) {
+    console.log("leaf.bold = " + leaf.bold);
+    children = <strong>{children}</strong>;
+  }
+
+  if (leaf.code) {
+    children = <code>{children}</code>;
+  }
+
+  if (leaf.italic) {
+    children = <em>{children}</em>;
+  }
+
+  if (leaf.underline) {
+    children = <u>{children}</u>;
+  }
   return (
     <span
-      {...props.attributes}
+      {...attributes}
       contentEditable={
         isAdminState.isAdmin
           ? true
-          : props.leaf.editable !== undefined && props.leaf.editable
+          : leaf.editable !== undefined && leaf.editable
       }
       style={{
         backgroundColor:
-          props.leaf.editable !== undefined && props.leaf.editable
+          leaf.editable !== undefined && leaf.editable
             ? "lightblue"
             : undefined,
       }}
     >
-      {props.children}
+      {children}
     </span>
   );
 };
