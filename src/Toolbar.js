@@ -28,6 +28,9 @@ export const Toolbar = () => {
       </button>
 
       <ToolbarButtons textEffect="bold" buttonLabel="b" />
+      <ToolbarButtons textEffect="italic" buttonLabel="i" />
+      <ToolbarButtons textEffect="code" buttonLabel="<>" />
+      <ToolbarButtons textEffect="underline" buttonLabel="_" />
     </>
   );
 };
