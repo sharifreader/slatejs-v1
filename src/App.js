@@ -68,6 +68,7 @@ const App = () => {
   );
 
   const renderElement = useCallback(({ attributes, children, element }) => {
+    console.log("element.align = " + element.align);
     switch (element.type) {
       case "field":
         return (
@@ -80,9 +81,24 @@ const App = () => {
             {element.content}
           </span>
         );
-
+      case "h1":
+        return (
+          <h2 style={{ textAlign: element.align }} {...attributes}>
+            {children}
+          </h2>
+        );
+      case "h2":
+        return (
+          <h3 style={{ textAlign: element.align }} {...attributes}>
+            {children}
+          </h3>
+        );
       default:
-        return <p {...attributes}>{children}</p>;
+        return (
+          <p style={{ textAlign: element.align }} {...attributes}>
+            {children}
+          </p>
+        );
     }
   }, []);
 
@@ -252,6 +268,7 @@ const App = () => {
       editor={editor}
       value={initialValue}
       onChange={(value) => {
+        console.log(value);
         const fieldsElements = [];
 
         for (const node of value) {
