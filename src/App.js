@@ -16,6 +16,7 @@ import { withHistory } from "slate-history";
 
 import { htmlEscape } from "escape-goat";
 import parse from "html-react-parser";
+
 import { Toolbar } from "./Toolbar";
 
 // import { initialValue } from "./InitialValue";
@@ -388,6 +389,7 @@ const App = () => {
           </div>
         ))}
       </div>
+
       <Toolbar />
       <div className="container">
         <Editable
@@ -428,7 +430,6 @@ const App = () => {
   );
 };
 
-// Add Bold to this and Toolbar
 const Leaf = ({ attributes, leaf, children }) => {
   if (leaf.bold) {
     console.log("leaf.bold = " + leaf.bold);
